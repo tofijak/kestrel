@@ -1,4 +1,4 @@
-# Magnetisk digiscoping-adapter
+# Kestrel – magnetisk digiscoping-adapter
 
 To dele: en **okular-ring** bliver siddende på scopet,
 og en **telefon-adapter** sidder på telefonens MagSafe og klikker magnetisk på ringen.
