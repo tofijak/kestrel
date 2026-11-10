@@ -9,11 +9,7 @@
 A ring lives on your spotting scope's eyepiece. An adapter lives on your phone's MagSafe.<br>
 Bring them together and 8 neodymium magnets pull the camera dead-centre onto the eyepiece.
 
-![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square)
-![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square)
-![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square)
-![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square)
-![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square)
+![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square) ![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square) ![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square) ![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square) ![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square)
 
 </div>
 
