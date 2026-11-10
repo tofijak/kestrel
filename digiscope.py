@@ -67,7 +67,10 @@ plate_r_ms = 29.0      # pladens radius omkring MagSafe-centrum
 # Ingen magneter på scopet; ca. 2 mT ved kameraet mens adapteren sidder på telefonen
 # (mod 3,6 mT med magneter i begge dele).
 steel_in = "ring"      # "ring" = stål i ringen, "adapter" = stål i adapteren, "none" = magneter i begge
-disc_d, disc_t = 6.0, 1.0    # SKØN: blød stål/jern (ikke rustfrit). Mål dine skiver og ret før print.
+# Stålskiver = GB119-cylinderstifter M6 x 3 mm, lejestål HRC62 (magnetisk). Ø6-skiver af jern
+# findes næsten ikke; stifterne gør (AliExpress 1005005710466043, 50 stk.). Kilde: sælgers spec,
+# mål med skydelære ved modtagelse og ret her før print.
+disc_d, disc_t = 6.0, 3.0
 disc_clear_d = 0.25    # lommen er lidt større (lim)
 disc_recess = 0.1      # skiven ligger lidt under fladen
 magsafe_mode = "magnets"  # "magnets" = rundmagneter i puden, "steel" = fordybning til stål-ring sticker

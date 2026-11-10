@@ -93,7 +93,7 @@ flowchart LR
 | Item | Qty |
 |---|---|
 | 6 × 3 mm N52 round magnets, axially magnetised | 20 per adapter (8 scope side + 12 MagSafe) |
-| Ø6 × 1 mm steel discs: mild steel or iron, **not stainless** | 8 per ring. Measure yours and set `disc_d` / `disc_t` in `digiscope.py` before printing |
+| Ø6 × 3 mm steel dowel pins (GB119 M6×3, bearing steel), e.g. [AliExpress 1005005710466043](https://www.aliexpress.com/item/1005005710466043.html) | 8 per ring (50 pcs ≈ 21 kr). Any magnetic steel works, **not stainless 304**. Measure yours and set `disc_d` / `disc_t` in `digiscope.py` before printing |
 | Superglue (CA) or 2-part epoxy | a few drops |
 | Felt / flock tape | optional, if a ring sits loose |
 
@@ -103,9 +103,9 @@ Ready-to-print files for a **Prusa MINI+ (Input Shaper)** are in [`print/`](prin
 
 | File | Contents | Time | Filament |
 |---|---|---|---|
-| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 3 h 56 min | 62 g |
-| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 48 min | 59 g |
-| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 24 min | 24 g |
+| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 4 h 01 min | 63 g |
+| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 51 min | 59 g |
+| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 30 min | 24 g |
 | `PETG_*.bgcode` | Same plates in PETG | ~ +6 min | ~ +1 g |
 
 The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
@@ -135,7 +135,7 @@ If you see hair-thin strings, dry the filament (PLA 45–50 °C for 4–6 h).
 
 ### 3. Glue magnets and steel discs
 
-1. **Rings:** glue a steel disc into each of the 8 pockets, flush or just below the surface. Steel has no polarity, so any side up. Check with a magnet first that the discs are magnetic.
+1. **Rings:** glue a steel pin into each of the 8 pockets, flush or just below the surface. Steel has no polarity, so either end up. Check with a magnet first that the pins are magnetic.
 2. **Adapter, scope side:** glue the 8 magnets in, flush or just below the surface. They pull on steel, so polarity doesn't matter here.
 3. **MagSafe pad (12 magnets):** let a loose magnet snap onto the phone's MagSafe ring and mark the side facing *away* from the phone. Glue all 12 with the marked side **down in the pocket**. Quickest: stand the pad on the phone with cling film between and the magnets set themselves.
 
@@ -196,7 +196,7 @@ print/              ready-to-print .3mf / .bgcode
 ## Roadmap
 
 - [ ] Physical fit test of the new Ø59.7 ATX ring
-- [ ] Measure holding force, magnet on steel disc (estimated 60–90 % of magnet on magnet)
+- [ ] Measure holding force, magnet on steel pin (not measured yet; magnet-on-steel is weaker than magnet-on-magnet)
 - [ ] Confirm the MagSafe centre on the Sandstone case with a MagSafe puck
 - [ ] Quick test-ring print (5 min) for unverified eyepiece sizes
 - [ ] More phones and scopes
