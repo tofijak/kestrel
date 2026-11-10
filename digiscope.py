@@ -63,6 +63,13 @@ max_hole_d = 52.0      # største lysåbning i ringen
 lobe_t = 5.0           # tykkelse af linse-delen
 magsafe_od = 58.0      # MagSafe-pude
 plate_r_ms = 29.0      # pladens radius omkring MagSafe-centrum
+# Scope-siden af adapteren: stålskiver (ringen har magneterne). Så har telefonen intet
+# magnetfelt ved kameraet, når den ikke sidder på scopet (ca. 1,6 mT når den gør, mod 3,6 mT
+# med magneter på begge sider). Ringene er uændrede, så gamle magnet-adaptere passer stadig.
+scope_side = "steel"   # "steel" = stålskiver, "magnets" = 6x3-magneter som i ringen
+disc_d, disc_t = 6.0, 1.0    # SKØN: blød stål/jern (ikke rustfrit). Mål dine skiver og ret før print.
+disc_clear_d = 0.25    # lommen er lidt større (lim)
+disc_recess = 0.1      # skiven ligger lidt under fladen
 magsafe_mode = "magnets"  # "magnets" = rundmagneter i puden, "steel" = fordybning til stål-ring sticker
 ms_mag_n = 12          # antal magneter i MagSafe-puden
 ms_mag_r = 24.5        # radius = midt i MagSafe-ringen (Ø44-54)
@@ -82,11 +89,13 @@ def cyl(h, r1, r2=None, seg=SEG):
     return Manifold.cylinder(h, r1, r1 if r2 is None else r2, seg)
 
 
-def magnet_pockets(z_bottom, n=mag_n, r=mag_r):
+def magnet_pockets(z_bottom, n=mag_n, r=mag_r, d=None, h=None):
+    d = pocket_d if d is None else d
+    h = pocket_h if h is None else h
     out = None
     for i in range(n):
         a = math.radians(i * 360 / n + 180 / n)
-        p = cyl(pocket_h + E, pocket_d / 2, seg=48).translate(
+        p = cyl(h + E, d / 2, seg=48).translate(
             (r * math.cos(a), r * math.sin(a), z_bottom))
         out = p if out is None else out + p
     return out
@@ -173,7 +182,10 @@ def phone_adapter(bump_h, lens_hole_d, lens_to_magsafe=None,
     groove = CrossSection([[(g_ri, -1), (g_ro, -1), (g_ro, g_h), (g_ri + half, g_h + half),
                             (g_ri, g_h)]]).revolve(SEG)
     body -= groove
-    body -= magnet_pockets(-E)
+    if scope_side == "steel":
+        body -= magnet_pockets(-E, d=disc_d + disc_clear_d, h=disc_t + disc_recess)
+    else:
+        body -= magnet_pockets(-E)
     # linsehul: 45° kegle der åbner sig mod scopet (printbar uden support)
     cone_d = lens_hole_d + 2 * lobe_t
     body -= cyl(lobe_t + 2 * E, cone_d / 2, lens_hole_d / 2).translate((0, 0, -E))

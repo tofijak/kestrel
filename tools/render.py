@@ -42,8 +42,8 @@ def union(parts):
     return out
 
 
-def magnets_ring_pattern(z, n=d.mag_n, r=d.mag_r):
-    return union(cyl(d.mag_h, d.mag_d / 2, 40).translate(
+def magnets_ring_pattern(z, n=d.mag_n, r=d.mag_r, dia=d.mag_d, h=d.mag_h):
+    return union(cyl(h, dia / 2, 40).translate(
         (r * math.cos(math.radians(i * 360 / n + 180 / n)),
          r * math.sin(math.radians(i * 360 / n + 180 / n)), z)) for i in range(n))
 
@@ -60,7 +60,10 @@ def adapter_with_magnets(phone):
     a = d.phone_adapter(**p)
     L = d.to_adapter_frame(p["lens"], p["magsafe"])[0] if "lens" in p else p["lens_to_magsafe"]
     top = d.lobe_t + p["bump_h"]
-    mags = magnets_ring_pattern(0.05)
+    if d.scope_side == "steel":  # stålskiver på scope-siden
+        mags = magnets_ring_pattern(d.disc_recess, dia=d.disc_d, h=d.disc_t)
+    else:
+        mags = magnets_ring_pattern(0.05)
     mags += magnets_ring_pattern(top - d.mag_h - 0.05, d.ms_mag_n, d.ms_mag_r).translate((0, L, 0))
     return a, mags
 

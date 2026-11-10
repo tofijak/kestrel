@@ -7,7 +7,7 @@
 **Snap-on magnetic digiscoping. Any scope, any phone, one click.**
 
 A ring lives on your spotting scope's eyepiece. An adapter lives on your phone's MagSafe.<br>
-Bring them together and 8 neodymium magnets pull the camera dead-centre onto the eyepiece.
+Bring them together and 8 neodymium magnets in the ring pull steel discs in the adapter, and the camera lands dead-centre on the eyepiece.
 
 ![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square) ![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square) ![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square) ![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square) ![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square)
 
@@ -39,19 +39,20 @@ Every ring fits every adapter, so one phone works on all your scopes, and one sc
 ```mermaid
 flowchart LR
     E[Eyepiece] -- slides over --> R[Ring<br/>8 × magnets + centring lip]
-    R <-- "🧲 magnets + lip in groove" --> A[Phone adapter<br/>8 + 12 magnets]
+    R <-- "🧲 magnets on steel + lip in groove" --> A[Phone adapter<br/>8 steel discs + 12 MagSafe magnets]
     A -- MagSafe --> P[Phone / magnetic case]
 ```
 
 <img src="docs/img/cutaway.png" alt="Cutaway through eyepiece, ring and adapter" width="100%">
 
-<sub>Section through the ATX eyepiece, the ring and the adapter, clicked together. Magnets meet face to face; the lip on the ring sits in the peaked groove of the adapter, which takes out any sideways play. The 45° cone over the camera keeps the light path open and prints without supports.</sub>
+<sub>Section through the ATX eyepiece, the ring and the adapter, clicked together. The ring's magnets pull on thin steel discs in the adapter; the lip on the ring sits in the peaked groove of the adapter, which takes out any sideways play. The 45° cone over the camera keeps the light path open and prints without supports.</sub>
 
 | | |
 |---|---|
 | **Self-centring** | 2 mm lip on the ring, peaked groove in the adapter. A 0.5 mm offset is enough to collide, so it can only sit centred. |
 | **Rotation lock** | On the OnePlus 13 a collar drops around the round camera island, so the hole can only land on the main camera. |
 | **Universal interface** | Magnet circle Ø64.6 mm, ring OD 74 mm, lip Ø52–56 mm. Same on every part. |
+| **Camera-friendly** | Magnets only in the ring; the adapter has plain steel. Off the scope, your phone carries no extra field at the camera; on the scope it's about 1.6 mT instead of 3.6 mT. |
 | **Support-free** | No flat ceilings on any bed face: peaked grooves and 45° cones only. |
 
 ## The parts
@@ -62,7 +63,7 @@ flowchart LR
 <td align="center" width="50%"><img src="docs/img/ring_DiamondbackHD85.png" alt="Diamondback ring"><br><b>Ring: Vortex Diamondback HD 85</b><br><sub>Bore for the Ø53.4 eyepiece</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="docs/img/adapter_OP13_scope_side.png" alt="Adapter scope side"><br><b>Adapter, scope side</b><br><sub>8 magnets, centring groove, 45° light cone</sub></td>
+<td align="center"><img src="docs/img/adapter_OP13_scope_side.png" alt="Adapter scope side"><br><b>Adapter, scope side</b><br><sub>8 steel discs, centring groove, 45° light cone</sub></td>
 <td align="center"><img src="docs/img/adapter_OP13_phone_side.png" alt="Adapter phone side"><br><b>Adapter, phone side</b><br><sub>12-magnet MagSafe pad + collar for the camera island</sub></td>
 </tr>
 <tr>
@@ -91,7 +92,8 @@ flowchart LR
 
 | Item | Qty |
 |---|---|
-| 6 × 3 mm N52 round magnets | 8 per ring, 20 per adapter (56 for the full set, buy 60) |
+| 6 × 3 mm N52 round magnets, axially magnetised | 8 per ring, 12 per adapter (40 for the full set) |
+| Ø6 × 1 mm steel discs: mild steel or iron, **not stainless** | 8 per adapter. Measure yours and set `disc_d` / `disc_t` in `digiscope.py` before printing |
 | Superglue (CA) or 2-part epoxy | a few drops |
 | Felt / flock tape | optional, if a ring sits loose |
 
@@ -101,10 +103,10 @@ Ready-to-print files for a **Prusa MINI+ (Input Shaper)** are in [`print/`](prin
 
 | File | Contents | Time | Filament |
 |---|---|---|---|
-| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 4 h 02 min | 63 g |
-| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 50 min | 59 g |
+| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 3 h 58 min | 63 g |
+| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 47 min | 59 g |
 | `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 31 min | 24 g |
-| `PETG_*.bgcode` | Same plates in PETG | ~ +5 min | ~ +1 g |
+| `PETG_*.bgcode` | Same plates in PETG | ~ +6 min | ~ +1 g |
 
 The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
 
@@ -131,10 +133,10 @@ If you see hair-thin strings, dry the filament (PLA 45–50 °C for 4–6 h).
 
 </details>
 
-### 3. Glue the magnets: get the polarity right
+### 3. Glue magnets and steel discs
 
-1. **Rings:** take the magnets off one stack and glue all 8 with the **same side up**. Do every ring the same way.
-2. **Adapter, scope side:** put a fresh magnet on top of each ring magnet (they snap on), lay cling film over them, put glue in the adapter's 8 pockets and press the adapter down. Polarity is now automatically right.
+1. **Rings:** glue the 8 magnets in, flush or just below the surface. The adapter is plain steel, which either pole pulls on, so polarity doesn't matter here. Glue them all the same side up anyway, so the ring still works with an older all-magnet adapter.
+2. **Adapter, scope side:** glue a steel disc into each of the 8 pockets, flush or just below the surface. Steel has no polarity, so any side up. Check with a magnet first that the discs are magnetic.
 3. **MagSafe pad (12 magnets):** let a loose magnet snap onto the phone's MagSafe ring and mark the side facing *away* from the phone. Glue all 12 with the marked side **down in the pocket**. Quickest: stand the pad on the phone with cling film between and the magnets set themselves.
 
 > [!NOTE]
@@ -175,6 +177,7 @@ python tools/render.py                             # README images (needs pyvist
 
 - **Ring on eyepiece:** zero overlap at nominal size *and* with the hole printed 0.3 mm undersize
 - **Adapter on ring:** every ring × every adapter has zero overlap; a 0.5 mm offset must collide
+- **Steel discs:** the discs fit their pockets, with at least 0.8 mm wall to the groove, cone and edge
 - **Adapter on phone:** physical 180° flip (never a mirror), hole within 0.5 mm of the main camera, collar clears the island
 - **Slicer:** no support, no bridging or floating warnings
 
@@ -193,6 +196,7 @@ print/              ready-to-print .3mf / .bgcode
 ## Roadmap
 
 - [ ] Physical fit test of the new Ø59.7 ATX ring
+- [ ] Measure holding force, magnet on steel disc (estimated 60–90 % of magnet on magnet)
 - [ ] Confirm the MagSafe centre on the Sandstone case with a MagSafe puck
 - [ ] Quick test-ring print (5 min) for unverified eyepiece sizes
 - [ ] More phones and scopes
