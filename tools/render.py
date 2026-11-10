@@ -51,7 +51,10 @@ def magnets_ring_pattern(z, n=d.mag_n, r=d.mag_r, dia=d.mag_d, h=d.mag_h):
 def ring_with_magnets(scope):
     ring = d.okular_ring(**d.SCOPES[scope])
     H = ring.bounding_box()[5] - d.lip_h
-    mags = magnets_ring_pattern(H - d.mag_h - 0.05)
+    if d.steel_in == "ring":  # stålskiver i ringen
+        mags = magnets_ring_pattern(H - d.disc_t - d.disc_recess, dia=d.disc_d, h=d.disc_t)
+    else:
+        mags = magnets_ring_pattern(H - d.mag_h - 0.05)
     return ring, mags, H
 
 
@@ -60,7 +63,7 @@ def adapter_with_magnets(phone):
     a = d.phone_adapter(**p)
     L = d.to_adapter_frame(p["lens"], p["magsafe"])[0] if "lens" in p else p["lens_to_magsafe"]
     top = d.lobe_t + p["bump_h"]
-    if d.scope_side == "steel":  # stålskiver på scope-siden
+    if d.steel_in == "adapter":  # stålskiver på scope-siden
         mags = magnets_ring_pattern(d.disc_recess, dia=d.disc_d, h=d.disc_t)
     else:
         mags = magnets_ring_pattern(0.05)

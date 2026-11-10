@@ -63,10 +63,10 @@ max_hole_d = 52.0      # største lysåbning i ringen
 lobe_t = 5.0           # tykkelse af linse-delen
 magsafe_od = 58.0      # MagSafe-pude
 plate_r_ms = 29.0      # pladens radius omkring MagSafe-centrum
-# Scope-siden af adapteren: stålskiver (ringen har magneterne). Så har telefonen intet
-# magnetfelt ved kameraet, når den ikke sidder på scopet (ca. 1,6 mT når den gør, mod 3,6 mT
-# med magneter på begge sider). Ringene er uændrede, så gamle magnet-adaptere passer stadig.
-scope_side = "steel"   # "steel" = stålskiver, "magnets" = 6x3-magneter som i ringen
+# Ringen på okularet har stålskiver, adapteren har magneterne.
+# Ingen magneter på scopet; ca. 2 mT ved kameraet mens adapteren sidder på telefonen
+# (mod 3,6 mT med magneter i begge dele).
+steel_in = "ring"      # "ring" = stål i ringen, "adapter" = stål i adapteren, "none" = magneter i begge
 disc_d, disc_t = 6.0, 1.0    # SKØN: blød stål/jern (ikke rustfrit). Mål dine skiver og ret før print.
 disc_clear_d = 0.25    # lommen er lidt større (lim)
 disc_recess = 0.1      # skiven ligger lidt under fladen
@@ -108,9 +108,13 @@ def okular_ring(eyepiece_d, fit=fit_clear):
     assert hole_r <= lip_outer_r - lip_w, "lysåbningen er større end kantens inderside"
     chamf = ep_r - hole_r
     # væg mellem magnetlommens nederste inderhjørne og 45°-fasen (vinkelret afstand) >= 1,2 mm
-    p_in = mag_r - pocket_d / 2
+    if steel_in == "ring":
+        r_pd, r_ph = disc_d + disc_clear_d, disc_t + disc_recess
+    else:
+        r_pd, r_ph = pocket_d, pocket_h
+    p_in = mag_r - r_pd / 2
     top_t = max(4.15, chamf + 1.2)
-    while (p_in - (ep_r - (top_t - pocket_h))) / math.sqrt(2) < 1.2:
+    while (p_in - (ep_r - (top_t - r_ph))) / math.sqrt(2) < 1.2:
         top_t += 0.05
     H = grip_depth + top_t
     profile = [
@@ -126,7 +130,7 @@ def okular_ring(eyepiece_d, fit=fit_clear):
                    (lip_outer_r, H + lip_h - 0.5), (lip_outer_r - 0.5, H + lip_h),
                    (lip_ri + 0.5, H + lip_h), (lip_ri, H + lip_h - 0.5)]
     body = body + CrossSection([lip_profile]).revolve(SEG)
-    return body - magnet_pockets(H - pocket_h)
+    return body - magnet_pockets(H - r_ph, d=r_pd, h=r_ph)
 
 
 def to_adapter_frame(lens, magsafe):
@@ -182,7 +186,7 @@ def phone_adapter(bump_h, lens_hole_d, lens_to_magsafe=None,
     groove = CrossSection([[(g_ri, -1), (g_ro, -1), (g_ro, g_h), (g_ri + half, g_h + half),
                             (g_ri, g_h)]]).revolve(SEG)
     body -= groove
-    if scope_side == "steel":
+    if steel_in == "adapter":
         body -= magnet_pockets(-E, d=disc_d + disc_clear_d, h=disc_t + disc_recess)
     else:
         body -= magnet_pockets(-E)
