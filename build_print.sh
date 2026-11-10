@@ -6,8 +6,8 @@ cd "$(dirname "$0")"
 PY=${1:-python3}
 MAT=${2:-PETG}
 case $MAT in
-  PLA)  MATERIAL="Esun PLA - Copy" ;;
-  PETG) MATERIAL="Generic PETG @MINIIS - Copy" ;;
+  PLA)  MATERIAL="Esun PLA - Copy"; MATOPT=(--temperature 195) ;;   # 5 °C lavere mod tråde
+  PETG) MATERIAL="Generic PETG @MINIIS - Copy"; MATOPT=() ;;
   *) echo "ukendt materiale: $MAT"; exit 1 ;;
 esac
 PS="/Applications/Original Prusa Drivers/PrusaSlicer.app/Contents/MacOS/PrusaSlicer"
@@ -22,7 +22,13 @@ P=(--loglevel 1
    --print-profile "0.20mm STRUCTURAL @MINIIS 0.4"
    --material-profile "$MATERIAL"
    --perimeters 4 --top-solid-layers 6 --bottom-solid-layers 5
-   --fill-density 30% --fill-pattern gyroid --seam-position rear --dont-arrange)
+   --fill-density 30% --fill-pattern gyroid --dont-arrange
+   # Overfladekvalitet (efter første print: lodret søm, tråde over magnetlommer, knopper på toppen)
+   --seam-position rear --scarf-seam-placement everywhere --scarf-seam-only-on-smooth  # skrå søm: ingen lodret linje
+   --avoid-crossing-perimeters      # kør inden i delen, ikke hen over magnetlommerne -> ingen tråde/knopper
+   --retract-length 3.2 --retract-speed 35 --wipe   # MINI-bowden: Prusas standard 3,2 mm + wipe ved sømmen
+   --ironing --ironing-type topmost # glat top på MagSafe-puden (kun øverste lag: +25 min i stedet for +1 t 45)
+   "${MATOPT[@]}")
 
 "$PS" "${P[@]}" --save "$TMP/config.ini" okular_ring_ATX.stl >/dev/null
 sed -i '' 's/^support_material = 1$/support_material = 0/' "$TMP/config.ini"

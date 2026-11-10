@@ -43,6 +43,10 @@ Rækkefølge for kilder til øjestykkets/øjenmuslingens diameter:
 2. **Adapter på ring:** overlap = 0 for alle kombinationer af ring og adapter, og en forskydning på 0,5 mm skal kollidere (negativ kontrol, beviser at kanten centrerer).
 3. **Adapter på telefon** (fysisk vending, regel 4): hullets centrum ligger på hovedkameraet (afstand < 0,5 mm), MagSafe-puden er centreret over MagSafe-ringen, og kraven går fri af øen (overlap = 0 ved +0,3 mm, kollision ved +0,6 mm).
 4. **Slicer:** PrusaSlicer uden support og uden advarsler om bridging/floating. Ingen flade lofter på den side, der vender mod pladen: brug 45°-kegler og spidse riller.
+   Overflade (lært af første print: lodret søm, tråde over magnetlommerne, knopper på puden):
+   skrå søm (`scarf_seam_placement = everywhere`), `avoid_crossing_perimeters`, retraktion 3,2 mm + wipe på MINI'ens bowden,
+   ironing kun `topmost` (hele toppen koster +1 t 45, øverste lag kun +25 min). Ligger i `build_print.sh`.
+   Tråde der ligner hår: tør filamentet (PLA 45–50 °C i 4–6 t).
 5. **Usikker diameter?** Print først en tynd testring (3–5 mm høj, ca. 10 min), før hele delen.
 
 ### 7. Svaret til brugeren
