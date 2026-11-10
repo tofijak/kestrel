@@ -46,7 +46,7 @@ Rækkefølge for kilder til øjestykkets/øjenmuslingens diameter:
 4. **Slicer:** PrusaSlicer uden support og uden advarsler om bridging/floating. Ingen flade lofter på den side, der vender mod pladen: brug 45°-kegler og spidse riller.
    Overflade (lært af første print: lodret søm, tråde over magnetlommerne, knopper på puden):
    skrå søm (`scarf_seam_placement = everywhere`), `avoid_crossing_perimeters`, retraktion 3,2 mm + wipe på MINI'ens bowden,
-   ironing kun `topmost` (hele toppen koster +1 t 45, øverste lag kun +25 min). Ligger i `build_print.sh`.
+   ironing kun `topmost` og først når pasformen er bekræftet: `IRON=1 ./build_print.sh …` (hele toppen koster +1 t 45, øverste lag +25 min). Testprint laves uden ironing. Ligger i `build_print.sh`.
    Tråde der ligner hår: tør filamentet (PLA 45–50 °C i 4–6 t).
 5. **Usikker diameter?** Print først en tynd testring (3–5 mm høj, ca. 10 min), før hele delen.
 

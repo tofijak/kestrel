@@ -103,9 +103,9 @@ Ready-to-print files for a **Prusa MINI+ (Input Shaper)** are in [`print/`](prin
 
 | File | Contents | Time | Filament |
 |---|---|---|---|
-| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 4 h 20 min | 68 g |
-| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 4 h 02 min | 62 g |
-| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 49 min | 29 g |
+| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 3 h 55 min | 68 g |
+| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 36 min | 61 g |
+| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 48 min | 29 g |
 | `PETG_*.bgcode` | Same plates in PETG | ~ +6 min | ~ +1 g |
 
 The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
@@ -122,7 +122,7 @@ The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
 | Seam | rear + **scarf seam** | no vertical zipper line on the round walls |
 | Avoid crossing perimeters | on | no strings or blobs over the magnet pockets |
 | Retraction | 3.2 mm @ 35 mm/s + wipe | Prusa's MINI bowden default |
-| Ironing | topmost layer | smooth MagSafe pad, +25 min (all top surfaces: +1 h 45) |
+| Ironing | **off** in the files (fit-test prints) | `IRON=1 ./build_print.sh …` turns on top-most ironing for a smooth MagSafe pad, +25 min |
 | PLA / PETG | 195 °C / 245 °C | |
 
 **Orientation:** rings opening-down, adapters scope-side down (MagSafe pad up). The plates are already laid out this way.

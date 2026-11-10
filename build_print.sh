@@ -1,6 +1,8 @@
 #!/bin/zsh
 # Bygger STL'er, PrusaSlicer-projekter (.3mf med indstillinger) og G-code til Prusa MINI.
 # Brug:  ./build_print.sh /sti/til/python [PLA|PETG]   (python med manifold3d + trimesh)
+#        IRON=1 ./build_print.sh ...  slår ironing til (glat top på MagSafe-puden, +25 min).
+#        Standard er fra, så testprint af pasformen går hurtigere.
 set -e
 cd "$(dirname "$0")"
 PY=${1:-python3}
@@ -10,6 +12,7 @@ case $MAT in
   PETG) MATERIAL="Generic PETG @MINIIS - Copy"; MATOPT=() ;;
   *) echo "ukendt materiale: $MAT"; exit 1 ;;
 esac
+if [[ ${IRON:-0} == 1 ]]; then IRONOPT=(--ironing --ironing-type topmost); else IRONOPT=(--no-ironing); fi
 PS="/Applications/Original Prusa Drivers/PrusaSlicer.app/Contents/MacOS/PrusaSlicer"
 TMP=$(mktemp -d)
 mkdir -p print
@@ -27,7 +30,7 @@ P=(--loglevel 1
    --seam-position rear --scarf-seam-placement everywhere --scarf-seam-only-on-smooth  # skrå søm: ingen lodret linje
    --avoid-crossing-perimeters      # kør inden i delen, ikke hen over magnetlommerne -> ingen tråde/knopper
    --retract-length 3.2 --retract-speed 35 --wipe   # MINI-bowden: Prusas standard 3,2 mm + wipe ved sømmen
-   --ironing --ironing-type topmost # glat top på MagSafe-puden (kun øverste lag: +25 min i stedet for +1 t 45)
+   "${IRONOPT[@]}"                 # ironing: IRON=1 (kun øverste lag: +25 min i stedet for +1 t 45)
    "${MATOPT[@]}")
 
 "$PS" "${P[@]}" --save "$TMP/config.ini" okular_ring_ATX.stl >/dev/null
