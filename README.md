@@ -93,7 +93,7 @@ flowchart LR
 | Item | Qty |
 |---|---|
 | 6 × 3 mm N52 round magnets, axially magnetised | 20 per adapter (8 scope side + 12 MagSafe) |
-| Ø6 × 3 mm steel dowel pins (GB119 M6×3, bearing steel), e.g. [AliExpress 1005005710466043](https://www.aliexpress.com/item/1005005710466043.html) | 8 per ring (50 pcs ≈ 21 kr). Any magnetic steel works, **not stainless 304**. Measure yours and set `disc_d` / `disc_t` in `digiscope.py` before printing |
+| Ø6 × 6 mm bearing-steel dowel pins (M6×6), e.g. [AliExpress 1005010026576161](https://www.aliexpress.com/item/1005010026576161.html) | 8 per ring (50 pcs ≈ 22 kr). Any magnetic steel works, **not stainless 304**. Ø6 pins start at 6 mm long. Measure yours and set `disc_d` / `disc_t` in `digiscope.py` before printing |
 | Superglue (CA) or 2-part epoxy | a few drops |
 | Felt / flock tape | optional, if a ring sits loose |
 
@@ -103,9 +103,9 @@ Ready-to-print files for a **Prusa MINI+ (Input Shaper)** are in [`print/`](prin
 
 | File | Contents | Time | Filament |
 |---|---|---|---|
-| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 4 h 01 min | 63 g |
-| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 51 min | 59 g |
-| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 30 min | 24 g |
+| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 4 h 20 min | 68 g |
+| `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 4 h 02 min | 62 g |
+| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 49 min | 29 g |
 | `PETG_*.bgcode` | Same plates in PETG | ~ +6 min | ~ +1 g |
 
 The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
