@@ -60,20 +60,20 @@ lip_clear = 0.5        # ekstra diameter i adapterens modsvarende fordybning
 max_hole_d = 52.0      # største lysåbning i ringen
 
 # Kobling mellem ring og adapter.
-#   "balls" (v2): 3 stålkugler/liggende stifter i ringen (120°) falder i 3 af 12 radiale V-riller i adapteren
-#                 (hver 30°, så stående og liggende virker). Magneten sidder lige over rillen og
-#                 trækker i kuglen. Kuglerne centrerer og låser rotationen; ingen centreringskant.
+#   "balls" (v2): 8 liggende stifter (el. kugler) i ringen falder i 8 radiale V-riller i adapteren
+#                 (hver 45°, så stående og liggende virker). Magneten sidder lige over rillen og
+#                 trækker i stiften. Stifterne centrerer og låser rotationen; ingen centreringskant.
 #   "lip"   (v1): stålstifter i ringen + centreringskant på ringen og rille i adapteren.
 coupling = "balls"
 ball_shape = "pin"     # "pin" = Ø6x6-stift lagt ned radialt (samme tværsnit som en kugle i rillen,
                        #         men mere stål under magneten), "ball" = lejekugle
 ball_d = 6.0           # Ø6: stift M6x6 (lejestål, se disc_*) eller lejekugle Ø6 (GCr15/52100); skal være magnetisk
 pin_len = 6.0          # stiftens længde (kun "pin"); lommen er pin_len + 0,4
-ball_n = 3
+ball_n = 8             # én stift under hver magnet: fuld kraft, 45°-trin (stående/liggende virker)
 ball_p = 2.0           # hvor meget kuglen stikker op over ringens flade
 ball_fit = 0.0         # ekstra diameter på kuglelommen (PLA-huller printes ~0,2 for små -> let presning + lim)
 face_gap = 0.3         # luft mellem ringens og adapterens flader, når kuglerne sidder i rillerne
-groove_n = 12          # riller i adapteren, jævnt fordelt (12 = hver 30°)
+groove_n = 8           # riller i adapteren, jævnt fordelt (8 = hver 45°)
 groove_len = 7.0       # rillens længde radialt
 mag_gap = 0.3          # luft fra kuglens top til magneten
 cap_t = 0.6            # plast over magneterne, printes efter pausen hvor magneterne lægges i

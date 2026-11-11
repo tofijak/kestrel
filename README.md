@@ -7,7 +7,7 @@
 **Snap-on magnetic digiscoping. Any scope, any phone, one click.**
 
 A ring lives on your spotting scope's eyepiece. An adapter lives on your phone's MagSafe.<br>
-Bring them together and three steel pins lying on the ring drop into V-grooves in the adapter, where magnets pull them in. The camera lands dead-centre on the eyepiece.
+Bring them together and eight steel pins lying on the ring drop into eight V-grooves in the adapter, each with a magnet right above it. The camera lands dead-centre on the eyepiece.
 
 ![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square) ![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square) ![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square) ![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square) ![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square) ![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0%20%2B%20MIT-34373c?style=flat-square)
 
@@ -26,7 +26,7 @@ Clamp adapters take a minute to line up, and you lose the bird while you do it. 
 
 - 🔭 **Ring** stays on the scope all day
 - 📱 **Adapter** stays on the phone
-- 🧲 **Click.** Three pins find three grooves and the magnets do the rest
+- 🧲 **Click.** Eight pins slot into eight grooves and the magnets do the rest
 
 Every ring fits every adapter, so one phone works on all your scopes, and one scope takes everyone's phone.
 
@@ -38,8 +38,8 @@ Every ring fits every adapter, so one phone works on all your scopes, and one sc
 
 ```mermaid
 flowchart LR
-    E[Eyepiece] -- slides over --> R[Ring<br/>3 × Ø6 steel pins, lying flat]
-    R <-- "🧲 pins in V-grooves, magnets above" --> A[Phone adapter<br/>12 + 12 magnets]
+    E[Eyepiece] -- slides over --> R[Ring<br/>8 × Ø6 steel pins, lying flat]
+    R <-- "🧲 pins in V-grooves, magnets above" --> A[Phone adapter<br/>8 + 12 magnets]
     A -- MagSafe --> P[Phone / magnetic case]
 ```
 
@@ -49,12 +49,13 @@ flowchart LR
 
 | | |
 |---|---|
-| **Self-centring** | Kinematic coupling: 3 radial pins at 120° in 3 radial V-grooves fix every direction exactly once. A 0.3 mm offset or a 2° twist collides, so it can only sit centred and can't turn. |
-| **Portrait or landscape** | 12 grooves, one every 30°. Lift, turn, click. |
+| **Self-centring** | 8 radial pins in 8 radial V-grooves, like a face gear. A 0.3 mm offset or a 2° twist collides, so it can only sit centred and can't turn. |
+| **Full strength** | Every magnet has its own pin right under it, so all 8 pull. |
+| **Portrait or landscape** | Grooves every 45°. Lift, turn, click. |
 | **Rotation lock** | On the OnePlus 13 a collar drops around the round camera island, so the hole can only land on the main camera. |
 | **Universal interface** | Pin and groove circle Ø64.6 mm, ring OD 74 mm. Same on every part. |
 | **Steel in the ring** | The ring holds three plain steel pins and the magnets live in the adapter. No magnets on your optics, and about 2 mT at the phone camera instead of 3.6 mT with magnets on both sides. |
-| **Sealed magnets** | The printer pauses once and you drop the 12 coupling magnets in; the next layers close them in. No glue, nothing to fall out. |
+| **Sealed magnets** | The printer pauses once and you drop the 8 coupling magnets in; the next layers close them in. No glue, nothing to fall out. |
 | **Support-free** | No flat ceilings on any bed face: peaked grooves and 45° cones only. |
 
 ## The parts
@@ -65,7 +66,7 @@ flowchart LR
 <td align="center" width="50%"><img src="docs/img/ring_DiamondbackHD85.png" alt="Diamondback ring"><br><b>Ring: Vortex Diamondback HD 85</b><br><sub>Bore for the Ø53.4 eyepiece</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="docs/img/adapter_OP13_scope_side.png" alt="Adapter scope side"><br><b>Adapter, scope side</b><br><sub>12 V-grooves with sealed magnets, 45° light cone</sub></td>
+<td align="center"><img src="docs/img/adapter_OP13_scope_side.png" alt="Adapter scope side"><br><b>Adapter, scope side</b><br><sub>8 V-grooves with sealed magnets, 45° light cone</sub></td>
 <td align="center"><img src="docs/img/adapter_OP13_phone_side.png" alt="Adapter phone side"><br><b>Adapter, phone side</b><br><sub>12-magnet MagSafe pad + collar for the camera island</sub></td>
 </tr>
 <tr>
@@ -94,8 +95,8 @@ flowchart LR
 
 | Item | Qty |
 |---|---|
-| 6 × 3 mm N52 round magnets, axially magnetised | 24 per adapter (12 sealed in the grooves + 12 MagSafe) |
-| Ø6 × 6 mm bearing-steel dowel pins (M6×6), e.g. [AliExpress 1005010026576161](https://www.aliexpress.com/item/1005010026576161.html) | 3 per ring. Must be magnetic, **not stainless 304**. Ø6 chrome-steel bearing balls work too (`ball_shape = "ball"`). Measure yours and set `ball_d` / `pin_len` in `digiscope.py` before printing |
+| 6 × 3 mm N52 round magnets, axially magnetised | 20 per adapter (8 sealed in the grooves + 12 MagSafe) |
+| Ø6 × 6 mm bearing-steel dowel pins (M6×6), e.g. [AliExpress 1005010026576161](https://www.aliexpress.com/item/1005010026576161.html) | 8 per ring. Must be magnetic, **not stainless 304**. Ø6 chrome-steel bearing balls work too (`ball_shape = "ball"`). Measure yours and set `ball_d` / `pin_len` in `digiscope.py` before printing |
 | Superglue (CA) or 2-part epoxy | a few drops |
 | Felt / flock tape | optional, if a ring sits loose |
 
@@ -105,16 +106,16 @@ Ready-to-print files for a **Prusa MINI+ (Input Shaper)** are in [`print/`](prin
 
 | File | Contents | Time | Filament |
 |---|---|---|---|
-| `PLA_test_kobling.bgcode` | **Start here:** a thin ring top + the adapter's lens part, to feel and measure the hold | 1 h 32 min | 24 g |
-| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 3 h 54 min | 66 g |
+| `PLA_test_kobling.bgcode` | **Start here:** a thin ring top + the adapter's lens part, to feel and measure the hold | 1 h 33 min | 24 g |
+| `PLA_ATX_OnePlus13.bgcode` | ATX ring + OnePlus 13 adapter | 3 h 53 min | 66 g |
 | `PLA_Diamondback_iPhone15.bgcode` | Diamondback ring + iPhone 15 adapter | 3 h 36 min | 60 g |
-| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 29 min | 25 g |
+| `PLA_kun_ring_ATX.bgcode` | ATX ring only | 1 h 35 min | 25 g |
 | `PETG_*.bgcode` | Same plates in PETG | ~ +6 min | ~ +1 g |
 
 The `.3mf` next to each is the PrusaSlicer project with every setting embedded.
 
 > [!IMPORTANT]
-> Every plate with an adapter **pauses at 5.4 mm** (the MINI beeps and parks). Drop one magnet into each of the 12 open pockets on the lens part, check they all sit flat, and resume. Polarity doesn't matter: they pull on steel.
+> Every plate with an adapter **pauses at 5.4 mm** (the MINI beeps and parks). Drop one magnet into each of the 8 open pockets on the lens part, check they all sit flat, and resume. Polarity doesn't matter: they pull on steel.
 
 <details>
 <summary><b>Print settings</b></summary>
@@ -141,8 +142,8 @@ If you see hair-thin strings, dry the filament (PLA 45–50 °C for 4–6 h).
 
 ### 3. Fit pins and magnets
 
-1. **Rings:** lay a steel pin in each of the 3 troughs, pointing outwards, and press it down until it bottoms out (a vice or clamp with a flat piece of wood), with a drop of CA glue. 2 mm of pin should stand proud. Check with a magnet first that the pins are magnetic.
-2. **Adapter, scope side:** nothing to do. The 12 coupling magnets went in during the print pause.
+1. **Rings:** lay a steel pin in each of the 8 troughs, pointing outwards, and press it down until it bottoms out (a vice or clamp with a flat piece of wood), with a drop of CA glue. 2 mm of pin should stand proud. Check with a magnet first that the pins are magnetic.
+2. **Adapter, scope side:** nothing to do. The 8 coupling magnets went in during the print pause.
 3. **MagSafe pad (12 magnets):** let a loose magnet snap onto the phone's MagSafe ring and mark the side facing *away* from the phone. Glue all 12 with the marked side **down in the pocket**. Quickest: stand the pad on the phone with cling film between and the magnets set themselves.
 
 > [!NOTE]
@@ -182,7 +183,7 @@ python tools/render.py                             # README images (needs pyvist
 ## What gets checked before printing
 
 - **Ring on eyepiece:** zero overlap at nominal size *and* with the hole printed 0.3 mm undersize
-- **Adapter on ring:** every ring × every adapter: the pins rest on both groove walls, the faces don't touch, a pin never touches a magnet; a 0.3 mm offset or 2° twist must collide; 30° and 90° turns must seat again
+- **Adapter on ring:** every ring × every adapter: the pins rest on both groove walls, the faces don't touch, a pin never touches a magnet; a 0.3 mm offset or 2° twist must collide; 45° and 90° turns must seat again
 - **Pockets:** the pins fit the ring's troughs with at least 0.8 mm wall; at least 0.8 mm wall and a 0.6 mm lid around every sealed magnet
 - **Adapter on phone:** physical 180° flip (never a mirror), hole within 0.5 mm of the main camera, collar clears the island
 - **Slicer:** no support, no bridging or floating warnings
