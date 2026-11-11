@@ -9,7 +9,7 @@
 A ring lives on your spotting scope's eyepiece. An adapter lives on your phone's MagSafe.<br>
 Bring them together and 8 neodymium magnets in the adapter pull on steel discs in the ring, and the camera lands dead-centre on the eyepiece.
 
-![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square) ![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square) ![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square) ![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square) ![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square)
+![3D printed](https://img.shields.io/badge/3D%20printed-PLA%20%7C%20PETG-c8642b?style=flat-square) ![Supports](https://img.shields.io/badge/supports-none-5d7387?style=flat-square) ![Printer](https://img.shields.io/badge/tested%20on-Prusa%20MINI%2B-5d7387?style=flat-square) ![Magnets](https://img.shields.io/badge/magnets-6%C3%973%20mm%20N52-c8642b?style=flat-square) ![Status](https://img.shields.io/badge/status-prototype-34373c?style=flat-square) ![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0%20%2B%20MIT-34373c?style=flat-square)
 
 </div>
 
@@ -201,6 +201,13 @@ print/              ready-to-print .3mf / .bgcode
 - [ ] Quick test-ring print (5 min) for unverified eyepiece sizes
 - [ ] More phones and scopes
 - [ ] English version of `METODE.md`
+
+## License
+
+- **Designs, print files, images and docs:** [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Print it, remix it, share it, but don't sell it, and credit Kestrel.
+- **Code** (`*.py`, `*.sh`, `tools/`): MIT.
+
+See [`LICENSE`](LICENSE). Kestrel isn't affiliated with Swarovski, Vortex, OnePlus or Apple.
 
 ---
 
