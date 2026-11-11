@@ -40,8 +40,8 @@ Rækkefølge for kilder til øjestykkets/øjenmuslingens diameter:
 
 ### 6. Validering før print (skal køre og bestå)
 1. **Ring på okular:** overlap = 0 for øjenmuslingens diameter, både nominelt og med hullet printet 0,3 mm for småt (PLA/PETG printer huller ca. 0,2–0,3 mm for små). Luft: 0,6–0,8 mm på diameteren.
-2. **Adapter på ring:** overlap = 0 for alle kombinationer af ring og adapter, og en forskydning på 0,5 mm skal kollidere (negativ kontrol, beviser at kanten centrerer).
-   Stålskiverne i ringen passer i lommerne med mindst 0,8 mm væg til kant, fase og yderside. Skivens mål (`disc_d`, `disc_t`) kommer fra sælgerens spec (stift M6 × 6; Ø6-stifter findes ikke kortere end 6 mm) og skal måles med skydelære, når stifterne er modtaget.
+2. **Adapter på ring (kugle-kobling, `coupling = "balls"`):** for alle kombinationer af ring og adapter skal kuglerne hvile på begge rillesider (overlap 0, men overlap > 0 når adapteren sænkes 0,05 mm), fladerne må ikke røre, og kuglen må ikke røre magneten. Negative kontroller: 0,3 mm forskydning og 2° drejning skal kollidere; 30° og 90° drejning skal sidde igen.
+   Kuglerne passer i ringens lommer; mindst 0,8 mm væg og 0,6 mm låg rundt om hver indkapslet magnet. Kuglens diameter (`ball_d`) måles med skydelære, når kuglerne er modtaget. Magnetlommens top ligger på en laggrænse, og printet pauser (M601) før laget ved `pause_z`; tjek i G-coden at `M601` står lige efter `;Z:<pause_z>`.
 3. **Adapter på telefon** (fysisk vending, regel 4): hullets centrum ligger på hovedkameraet (afstand < 0,5 mm), MagSafe-puden er centreret over MagSafe-ringen, og kraven går fri af øen (overlap = 0 ved +0,3 mm, kollision ved +0,6 mm).
 4. **Slicer:** PrusaSlicer uden support og uden advarsler om bridging/floating. Ingen flade lofter på den side, der vender mod pladen: brug 45°-kegler og spidse riller.
    Overflade (lært af første print: lodret søm, tråde over magnetlommerne, knopper på puden):

@@ -48,10 +48,18 @@ def magnets_ring_pattern(z, n=d.mag_n, r=d.mag_r, dia=d.mag_d, h=d.mag_h):
          r * math.sin(math.radians(i * 360 / n + 180 / n)), z)) for i in range(n))
 
 
+def at_angles(m, angles, r=d.mag_r):
+    return union(m.translate((r * math.cos(math.radians(a)), r * math.sin(math.radians(a)), 0))
+                 for a in angles)
+
+
 def ring_with_magnets(scope):
     ring = d.okular_ring(**d.SCOPES[scope])
-    H = ring.bounding_box()[5] - d.lip_h
-    if d.steel_in == "ring":  # stålskiver i ringen
+    H = d.ring_dims(**d.SCOPES[scope])[4]
+    if d.coupling == "balls":  # stålkugler
+        mags = at_angles(Manifold.sphere(d.ball_r, 64), d.ball_angles()).translate(
+            (0, 0, H + d.ball_p - d.ball_r))
+    elif d.steel_in == "ring":  # stålskiver i ringen
         mags = magnets_ring_pattern(H - d.disc_t - d.disc_recess, dia=d.disc_d, h=d.disc_t)
     else:
         mags = magnets_ring_pattern(H - d.mag_h - 0.05)
@@ -63,7 +71,9 @@ def adapter_with_magnets(phone):
     a = d.phone_adapter(**p)
     L = d.to_adapter_frame(p["lens"], p["magsafe"])[0] if "lens" in p else p["lens_to_magsafe"]
     top = d.lobe_t + p["bump_h"]
-    if d.steel_in == "adapter":  # stålskiver på scope-siden
+    if d.coupling == "balls":  # magneter lukket inde over rillerne
+        mags = at_angles(cyl(d.mag_h, d.mag_d / 2, 40), d.groove_angles()).translate((0, 0, d.mag_z0))
+    elif d.steel_in == "adapter":  # stålskiver på scope-siden
         mags = magnets_ring_pattern(d.disc_recess, dia=d.disc_d, h=d.disc_t)
     else:
         mags = magnets_ring_pattern(0.05)
@@ -310,9 +320,11 @@ def cutaway():
     ring, rm, H = ring_with_magnets("ATX")
     a, am = adapter_with_magnets("OP13")
     ep, epg = atx_eyepiece(d.grip_depth, 26)
-    items = [(ring, SLATE), (rm, NICKEL), (a.translate((0, 0, H)), RUFOUS),
-             (am.translate((0, 0, H)), NICKEL), (ep, RUBBER), (epg, GLASS)]
-    cut = [(m.rotate((0, 0, 22.5)).trim_by_plane((0, 1, 0), 0.0), col) for m, col in items]
+    zA = H + (d.face_gap if d.coupling == "balls" else 0)
+    items = [(ring, SLATE), (rm, NICKEL), (a.translate((0, 0, zA)), RUFOUS),
+             (am.translate((0, 0, zA)), NICKEL), (ep, RUBBER), (epg, GLASS)]
+    rot = -d.ball_angles()[0] if d.coupling == "balls" else 22.5  # snit gennem en kugle/magnet
+    cut = [(m.rotate((0, 0, rot)).trim_by_plane((0, 1, 0), 0.0), col) for m, col in items]
     render("cutaway.png", cut, (1600, 1000), (0.22, -1.0, 0.25), 1.4, floor=False, front=0.45)
 
 
