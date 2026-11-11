@@ -56,7 +56,11 @@ def at_angles(m, angles, r=d.mag_r):
 def ring_with_magnets(scope):
     ring = d.okular_ring(**d.SCOPES[scope])
     H = d.ring_dims(**d.SCOPES[scope])[4]
-    if d.coupling == "balls":  # stålkugler
+    if d.coupling == "balls" and d.ball_shape == "pin":  # liggende stålstifter
+        pin = cyl(d.pin_len, d.ball_r, 48).rotate((0, 90, 0)).translate(
+            (d.mag_r - d.pin_len / 2, 0, H + d.ball_p - d.ball_r))
+        mags = union(pin.rotate((0, 0, a)) for a in d.ball_angles())
+    elif d.coupling == "balls":  # stålkugler
         mags = at_angles(Manifold.sphere(d.ball_r, 64), d.ball_angles()).translate(
             (0, 0, H + d.ball_p - d.ball_r))
     elif d.steel_in == "ring":  # stålskiver i ringen

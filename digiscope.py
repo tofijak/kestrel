@@ -60,12 +60,15 @@ lip_clear = 0.5        # ekstra diameter i adapterens modsvarende fordybning
 max_hole_d = 52.0      # største lysåbning i ringen
 
 # Kobling mellem ring og adapter.
-#   "balls" (v2): 3 stålkugler i ringen (120°) falder i 3 af 12 radiale V-riller i adapteren
+#   "balls" (v2): 3 stålkugler/liggende stifter i ringen (120°) falder i 3 af 12 radiale V-riller i adapteren
 #                 (hver 30°, så stående og liggende virker). Magneten sidder lige over rillen og
 #                 trækker i kuglen. Kuglerne centrerer og låser rotationen; ingen centreringskant.
 #   "lip"   (v1): stålstifter i ringen + centreringskant på ringen og rille i adapteren.
 coupling = "balls"
-ball_d = 6.0           # lejekugler Ø6 mm, kromstål (GCr15/52100, magnetisk)
+ball_shape = "pin"     # "pin" = Ø6x6-stift lagt ned radialt (samme tværsnit som en kugle i rillen,
+                       #         men mere stål under magneten), "ball" = lejekugle
+ball_d = 6.0           # Ø6: stift M6x6 (lejestål, se disc_*) eller lejekugle Ø6 (GCr15/52100); skal være magnetisk
+pin_len = 6.0          # stiftens længde (kun "pin"); lommen er pin_len + 0,4
 ball_n = 3
 ball_p = 2.0           # hvor meget kuglen stikker op over ringens flade
 ball_fit = 0.0         # ekstra diameter på kuglelommen (PLA-huller printes ~0,2 for små -> let presning + lim)
@@ -150,7 +153,8 @@ def ring_dims(eyepiece_d, fit=fit_clear):
     chamf = ep_r - hole_r
     # væg mellem lommens nederste inderhjørne og 45°-fasen (vinkelret afstand) >= 1,2 mm
     r_pd, r_ph = ring_pockets()
-    p_in = mag_r - r_pd / 2
+    span = pin_len + 0.4 if coupling == "balls" and ball_shape == "pin" else r_pd
+    p_in = mag_r - span / 2
     top_t = max(4.15, chamf + 1.2)
     while (p_in - (ep_r - (top_t - r_ph))) / math.sqrt(2) < 1.2:
         top_t += 0.05
@@ -166,9 +170,17 @@ def groove_angles():
 
 
 def ball_pockets(z_bottom, d, h):
+    """Lommer til stålet i ringens top. Kugle: lodret cylinder. Stift: liggende radialt i et trug
+    (halvrund bund, lodrette sider op til fladen), stiften presses ned og limes."""
+    if ball_shape == "pin":
+        L = pin_len + 0.4
+        lying = cyl(L, d / 2, seg=64).rotate((0, 90, 0)).translate((-L / 2, 0, z_bottom + d / 2))
+        one = Manifold.batch_hull([lying, lying.translate((0, 0, h + E - d / 2))])
+    else:
+        one = cyl(h + E, d / 2, seg=64).translate((0, 0, z_bottom))
     out = None
-    for a in map(math.radians, ball_angles()):
-        p = cyl(h + E, d / 2, seg=64).translate((mag_r * math.cos(a), mag_r * math.sin(a), z_bottom))
+    for a in ball_angles():
+        p = one.translate((mag_r, 0, 0)).rotate((0, 0, a))
         out = p if out is None else out + p
     return out
 
