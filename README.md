@@ -52,7 +52,7 @@ flowchart LR
 | **Self-centring** | Kinematic coupling: 3 radial pins at 120° in 3 radial V-grooves fix every direction exactly once. A 0.3 mm offset or a 2° twist collides, so it can only sit centred and can't turn. |
 | **Portrait or landscape** | 12 grooves, one every 30°. Lift, turn, click. |
 | **Rotation lock** | On the OnePlus 13 a collar drops around the round camera island, so the hole can only land on the main camera. |
-| **Universal interface** | Ball and groove circle Ø64.6 mm, ring OD 74 mm. Same on every part. |
+| **Universal interface** | Pin and groove circle Ø64.6 mm, ring OD 74 mm. Same on every part. |
 | **Steel in the ring** | The ring holds three plain steel pins and the magnets live in the adapter. No magnets on your optics, and about 2 mT at the phone camera instead of 3.6 mT with magnets on both sides. |
 | **Sealed magnets** | The printer pauses once and you drop the 12 coupling magnets in; the next layers close them in. No glue, nothing to fall out. |
 | **Support-free** | No flat ceilings on any bed face: peaked grooves and 45° cones only. |
